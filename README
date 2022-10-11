@@ -1,0 +1,37 @@
+Pour lancer le webservice il faut exécuter les commande suivante dans l'ordre
+
+npm install
+setx PING_LISTEN_PORT "Numéro du port"
+node build/app.js
+
+Le webservice permet de récupérer les Headers de la requête sur /ping donc une réponse 200
+dans le cas où on tente une requête autre que /ping on obtiendra une erreur 404
+
+paths:
+    /ping
+        get:
+            tags:
+                - ping
+            summary: return headers
+            description: return headers in format json
+            responses:
+                '200':
+                    description: successful response
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                Headers information
+                '404':
+                    description: empty response
+                '500':
+                    description: unknown error
+    /*
+        get:
+            tags:
+                - all
+            summary: return nothing
+            description: return nothing
+            reponses:
+                '500':
+                    description: unknown error

@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 dotenv.config();
+const port = 3000;
 
 const app = express();
 app.use(express.json());
@@ -13,8 +14,8 @@ app.get("*", (req, res) => {
   res.sendStatus(404);
 });
 
-app.listen(process.env.PING_LISTEN_PORT, () => {
+app.listen(process.env.PING_LISTEN_PORT || port, () => {
   return console.log(
-    `Express is listening at http://localhost:${process.env.PING_LISTEN_PORT}`
+    `Express is listening at http://localhost:${process.env.PING_LISTEN_PORT || port}`
   );
 });
